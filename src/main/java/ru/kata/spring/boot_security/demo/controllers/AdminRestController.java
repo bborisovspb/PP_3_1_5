@@ -9,7 +9,6 @@ import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.services.RoleService;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -27,7 +26,6 @@ public class AdminRestController {
     }
 
 
-
     @GetMapping("api/users")
     public List<User> getUsers() {
         return userService.getAllUsers();
@@ -35,8 +33,7 @@ public class AdminRestController {
 
     @GetMapping("api/users/{id}")
     public User getUser (@PathVariable int id) {
-        User user = userService.userInfo(id);
-        return user;
+        return userService.userInfo(id);
     }
 
     @DeleteMapping("api/users/{id}")
@@ -60,13 +57,6 @@ public class AdminRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<User> getAuthorizedUser(Principal principal) {
-
-        System.out.println(principal.getName());
-        return new ResponseEntity<>(userService.findByUserName(principal.getName()), HttpStatus.OK);
-
-    }
 
     @GetMapping("/api/roles")
     public ResponseEntity<List<Role>> getAllRoles() {

@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.kata.spring.boot_security.demo.services.MyUserDetailService;
-import ru.kata.spring.boot_security.demo.services.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -34,22 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/**").permitAll()
-//                .antMatchers("/user", "/logout", "/login", "/").permitAll()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .anyRequest().hasAnyRole("ADMIN")
-//
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .successHandler(successUserHandler)
-//                .permitAll()
-//                .and()
-//                .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
-//                .permitAll();
 
 
         http.formLogin().loginPage("/login")
@@ -74,7 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder( );
@@ -88,6 +70,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setUserDetailsService(myUserDetailService);
         return authenticationProvider;
     }
-
 
 }

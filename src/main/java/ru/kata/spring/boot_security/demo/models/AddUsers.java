@@ -7,7 +7,6 @@ import ru.kata.spring.boot_security.demo.services.UserService;
 import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import java.util.List;
 public class AddUsers {
 
     private  final UserService userService;
-
 
     @Autowired
     public AddUsers(UserServiceImpl userService) {
